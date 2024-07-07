@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-const sequelize = require('../../../../../ORM-ECommerce/ORM-ECommerce/Develop/config/connection.js');
+const sequelize = require('../config/connection.js');
 
 class Category extends Model {}
 
