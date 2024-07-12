@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category, Product } = require('../../../../../../../UTA-VIRT-FSF-PT-03-2024-U-LOLC-3/13-ORM/02-Challenge/Develop/models');
+const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
 

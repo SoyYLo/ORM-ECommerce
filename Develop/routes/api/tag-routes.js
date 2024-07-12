@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Tag, Product, ProductTag } = require('../../../../../../../UTA-VIRT-FSF-PT-03-2024-U-LOLC-3/13-ORM/02-Challenge/Develop/models');
+const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
   // create a new tag
   Tag.create(req.body)
   .then(dbTagData => res.json(dbTagData))
-  .cacth(err => {
+  .catch(err => {
     console.log(error);
     res.status(500).json(err);
   });

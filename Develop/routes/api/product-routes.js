@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Category, Tag, ProductTag } = require('../../../../../../../UTA-VIRT-FSF-PT-03-2024-U-LOLC-3/13-ORM/02-Challenge/Develop/models');
+const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
@@ -7,8 +7,10 @@ const { Product, Category, Tag, ProductTag } = require('../../../../../../../UTA
 router.get('/', (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
-  Product.findall({
-    include: [Category, Tag]
+  Product.findAll({
+    include: [Category,{model: Tag, 
+      through: ProductTag,
+    }]
   })
   .then(dbProductData => res.json(dbProductData))
   .catch(err => {
@@ -46,7 +48,7 @@ router.post('/', (req, res) => {
       price: 200.00,
       stock: 3,
       tagIds: [1, 2, 3, 4]
-    }
+    }G
   */
   Product.create(req.body)
     .then((product) => {
@@ -120,7 +122,7 @@ router.delete('/:id', (req, res) => {
   })
   .then(dbProductData => {
     if (!dbProductData) {
-      res.status(404).json({ message: "Np product found with this id."});
+      res.status(404).json({ message: "No product found with this id."});
       return;
     }
     res.json({ message: "Product successfully deleted."});
